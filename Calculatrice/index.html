@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <script src = "scripts/main.js"></script>
+</head>
+<body>
+    <h1>Calculatrice</h1>
+    <button type="submit" value="1" id = "btn-1">1</button>
+    <button type="submit" value="2" id = "btn-2">2</button>
+    <button type="submit" value="3" id = "btn-3">3</button> <br>
+    <button type="submit" value="4" id = "btn-4">4</button>
+    <button type="submit" value="5" id = "btn-5">5</button>
+    <button type="submit" value="6" id = "btn-6">6</button> <br>
+    <button type="submit" value="7" id = "btn-7">7</button>
+    <button type="submit" value="8" id = "btn-8">8</button>
+    <button type="submit" value="9" id = "btn-9">9</button>
+    <button type="submit" value="11" id = "times">*</button>
+    <button type="submit" value="22" id = "plus">+</button>
+    <button type="submit" value="33" id = "minus">-</button>
+    <button type="submit" value="44" id = "divide">/</button>
+    <button type="submit" value="55" id = "divide">=</button>
+    <button type = "reset">Reset</button>
+    <div>
+        <p>Pending : <span id = "pending"></span></p>
+    </div>
+    <div>
+        <p>Résultat : <span id = "result"></span></p>
+    </div>
+
+    <script href = "scripts/main.js">
+        
+
+        document.querySelector('button[type="reset"]').addEventListener('click', (e) => {
+            number = []
+            start = 0
+            result = 0
+            realResult = 0
+        })
+
+        let number = []
+        let start = 0
+        let result = ""
+        let realResult = 0
+        document.querySelectorAll('button').forEach((btn) => {
+            btn.addEventListener('click', (e) => {
+                let valeur = e.target.value;
+                if(valeur == 22 || valeur == 11 || valeur == 33 || valeur == 44) {
+                    
+                    if (valeur == 22) {
+                        number = number + "+"
+                    }
+                    if (valeur == 33) {
+                        number = number + "-"
+                    }
+                    if (valeur == 11) {
+                        number = number + "*"
+                    }
+                    if (valeur == 44) {
+                        number = number + "/"
+                    }
+                    document.querySelector('#pending').innerHTML = number
+                }
+
+                else if(valeur == 55) {
+                    for(let i = 0; i < number.length; i++) {
+                        if (number[i] == "+") {
+                            result = result + toNumber(number, start, i)
+                            realResult = realResult + parseInt(toNumber(number, start, i+1))
+                            console.log('"Faux" résultat : ' + result)
+                            console.log('realResult' + realResult)
+                            start = i+1
+
+                        }
+                        if ((i == number.length - 1) && (number[start-1] == "+") ) {
+                            result = result + parseInt(toNumber(number, start, i+1))
+                            realResult = realResult + parseInt(toNumber(number, start, i+1))
+                            console.log('"Faux" résultat : ' + result)
+                            console.log('realResult' + realResult)
+                            document.querySelector('#result').innerHTML = realResult
+                        }
+                    }
+                }
+                else {
+                    number = number + valeur
+                
+                    document.querySelector('#pending').innerHTML = number
+                }
+
+            })
+        });
+    </script>
+</body>
+</html>
+

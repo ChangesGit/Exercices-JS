@@ -13,5 +13,5 @@ console.log(variable1[2]);
 
 let paragraphe = document.querySelector('#test')
 variable1.forEach((element) => {
-    paragraphe.innerHTML += element + '<br/>'
+    paragraphe.innerText += element + `<br/>`
 })
