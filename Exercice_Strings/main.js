@@ -16,4 +16,22 @@ Merci de votre fidélité ! Pour vous foutre un peu le seum, une petite blague q
 _______
 ${blague2}`
 
-document.querySelector('p').innerText = phrase2;
+document.querySelector('p:nth-of-type(1)').innerText = phrase2;
+
+let orderInformations = {
+    'orderedPizza' : 'Ananas',
+    'timeTilArrival': '22 minutes',
+    'clientName' : 'Sasuke49',
+    'clientAdress' : '29 rue des lilas 00000',
+    'blague1' : `Qu'est-ce qu'une pizza dit à une autre pizza qui lui fait de l'ombre ? "Arrête de me trancher la route !`,
+    'blague2' : `Qu'est-ce qu'une pizza a dit à une autre pizza qui lui demandait des conseils ? "Suis ta pâte et tout ira bien" (Je ne comprends pas la blague)`, 
+};
+
+let phraseObjet2 = `Bonjour ${orderInformations.clientName}, votre Pizza ${orderInformations.orderedPizza} est en préparation !
+Elle arrivera d'ici ${orderInformations.timeTilArrival} à l'adresse ${orderInformations.clientAdress}.
+Merci de votre fidélité ! Pour vous foutre un peu le seum, une petite blague que je ne comprends pas moi-même : 
+
+-----------
+${orderInformations.blague2}`;
+
+document.querySelector('p:nth-of-type(2)').innerText = phraseObjet2;
